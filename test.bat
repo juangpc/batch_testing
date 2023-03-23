@@ -6,6 +6,7 @@ setlocal EnableDelayedExpansion
 
 SET "SUCCESS=0"
 SET "FAIL=1"
+SET "EXIT_VALUE=3"
 
 IF NOT "%1"=="" (
   ECHO we have an input
@@ -18,17 +19,19 @@ IF "%1"=="" (
 
 :IntermediaryFunc1
 ECHO I am in this function.
-exit /B 
+exit /B %EXIT_VALUE%
 ECHO THIS SHOULD NOT BE PRINTED
 
 exit /b  
 
 :FuncSuccess
 ECHO I am succeding.
+SET "EXIT_VALUE=0"
 exit /B %SUCCESS%
 
 :FuncFail
 ECHO I am failing.
+SET "EXIT_VALUE=1"
 exit /B %FAIL%
 
 
